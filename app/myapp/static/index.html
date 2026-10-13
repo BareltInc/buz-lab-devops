@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Arabic Learning Tracker</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .form-group { margin-bottom: 10px; }
+        .links { margin-top: 30px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Arabic Learning Tracker</h1>
+    
+    <form action="/add" method="POST">
+        <div class="form-group">
+            <label>Арабский:</label>
+            <input type="text" name="arabic" required>
+        </div>
+        <div class="form-group">
+            <label>Перевод:</label>
+            <input type="text" name="translation" required>
+        </div>
+        <button type="submit">Добавить</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Арабский</th>
+                <th>Перевод</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word in words %}
+            <tr>
+                <td>{{ word[1] }}</td>
+                <td>{{ word[2] }}</td>
+                <td><a href="/delete/{{ word[0] }}" style="color:red;">удалить</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="links">
+        <a href="/health">Health Check</a> | 
+        <a href="/metrics">Prometheus Metrics</a>
+    </div>
+</body>
+</html>

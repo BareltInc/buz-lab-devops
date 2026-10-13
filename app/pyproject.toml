@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myapp"
+version = "1.0.0"
+description = "DevOps Lab: Arabic Learning Tracker"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "Flask>=3.0.0",
+    "gunicorn>=21.2.0",
+    "prometheus-client>=0.20.0"
+]
+
+[tool.setuptools.packages.find]
+include = ["myapp*"]
+
+[tool.setuptools.package-data]
+myapp = ["templates/*", "static/*"]
