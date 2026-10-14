@@ -33,3 +33,24 @@ jobs:
         with:
           name: python-wheel
           path: artifacts/*.whl
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: python-wheel
+          path: artifacts/
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd buz-lab-devops
+            git pull
+            bash deploy/deploy.sh
