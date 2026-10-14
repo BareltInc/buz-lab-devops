@@ -4,10 +4,9 @@ from flask import Flask, redirect, render_template, request, url_for
 from prometheus_client import Counter, Gauge, generate_latest
 from myapp.db import get_db_path, init_db
 
-# ИСПРАВЛЕНО: добавлены двойные подчеркивания __file__ и __name__
 base_dir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__,
-            static_folder=os.path.join(base_dir, 'static'), 
+            static_folder=os.path.join(base_dir, 'static'),
             template_folder=os.path.join(base_dir, 'static'))
 
 REQUEST_COUNT = Counter('http_requests_total', 'Total HTTP Requests', ['method', 'endpoint'])
@@ -49,9 +48,8 @@ def add_word():
         cursor.execute('INSERT INTO words (arabic, translation) VALUES (?, ?)', (arabic, translation))
         conn.commit()
         conn.close()
-    return redirect(url_for('index'))
+        return redirect(url_for('index'))
 
-# ИСПРАВЛЕНО: правильный синтаксис маршрута Flask
 @app.route('/delete/<int:word_id>')
 def delete_word(word_id):
     REQUEST_COUNT.labels(method=request.method, endpoint='/delete').inc()
