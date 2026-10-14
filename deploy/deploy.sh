@@ -17,7 +17,7 @@ VERSION=$(echo "$WHEEL_NAME" | cut -d'-' -f2)
 echo "Extracted version: $VERSION"
 
 # Собираем Docker-образ с передачей ARG и тегом версии
-docker build --build-arg WHEEL_FILE="$WHEEL_FILE" -t myapp:"$VERSION" -t myapp:latest .
+docker build --no-cache --build-arg WHEEL_FILE="$WHEEL_FILE" -t myapp:"$VERSION" -t myapp:latest .
 
 # Запускаем стек через docker compose
 docker compose up -d

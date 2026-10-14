@@ -14,7 +14,7 @@ if "%WHEEL_FILE%"=="" (
 
 echo Found wheel: %WHEEL_NAME%
 
-docker build --build-arg WHEEL_FILE=%WHEEL_FILE% -t myapp:latest .
+docker build --no-cache --build-arg WHEEL_FILE=%WHEEL_FILE% -t myapp:latest .
 docker compose up -d
 
 echo Deployment completed successfully!
