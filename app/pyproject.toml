@@ -14,8 +14,11 @@ dependencies = [
     "prometheus-client>=0.20.0"
 ]
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.packages.find]
 include = ["myapp*"]
 
 [tool.setuptools.package-data]
-myapp = ["templates/*", "static/*"]
+myapp = ["static/*.html", "static/*.css", "templates/*.html"]
