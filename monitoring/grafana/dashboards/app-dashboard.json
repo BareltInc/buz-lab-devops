@@ -75,12 +75,12 @@
       }
     },
     {
-      "title": "CPU контейнера arabic_app (%)",
+      "title": "CPU приложения (%)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 14 },
       "targets": [
         {
-          "expr": "rate(container_cpu_usage_seconds_total{name=\"arabic_app\"}[5m]) * 100",
+          "expr": "rate(process_cpu_seconds_total[5m]) * 100",
           "legendFormat": "CPU %"
         }
       ],
@@ -88,23 +88,18 @@
         "defaults": {
           "color": { "mode": "palette-classic" },
           "custom": { "lineWidth": 2, "fillOpacity": 20 },
-          "min": 0,
-          "max": 100
+          "min": 0
         }
       }
     },
     {
-      "title": "Память контейнера arabic_app (MB)",
+      "title": "Память приложения (MB)",
       "type": "timeseries",
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 22 },
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{name=\"arabic_app\"} / 1024 / 1024",
+          "expr": "process_resident_memory_bytes / 1024 / 1024",
           "legendFormat": "Использовано"
-        },
-        {
-          "expr": "container_spec_memory_limit_bytes{name=\"arabic_app\"} / 1024 / 1024",
-          "legendFormat": "Лимит (512 MB)"
         }
       ],
       "fieldConfig": {
@@ -121,7 +116,7 @@
       "gridPos": { "h": 8, "w": 12, "x": 0, "y": 30 },
       "targets": [
         {
-          "expr": "100 - (avg(rate(container_cpu_usage_seconds_total{id=\"/\"}[5m])) * 100 / machine_cpu_cores)",
+          "expr": "rate(container_cpu_usage_seconds_total{id=\"/\"}[5m]) * 100",
           "legendFormat": "Host CPU %"
         }
       ],
@@ -129,8 +124,7 @@
         "defaults": {
           "color": { "mode": "palette-classic" },
           "custom": { "lineWidth": 2, "fillOpacity": 20 },
-          "min": 0,
-          "max": 100
+          "min": 0
         }
       }
     },
