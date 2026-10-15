@@ -14,6 +14,7 @@ WORD_COUNT = Gauge('arabic_words_total', 'Total number of Arabic words in databa
 
 @app.before_request
 def before_request():
+    REQUEST_COUNT.labels(method=request.method, endpoint=request.path).inc()
     try:
         conn = sqlite3.connect(get_db_path())
         cursor = conn.cursor()
