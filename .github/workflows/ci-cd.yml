@@ -13,13 +13,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create artifacts directory
-        run: mkdir -p artifacts
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Run tests and build wheel
+      - name: Install dependencies
         run: |
-          # Запускаем твой скрипт, который делает тесты и сборку wheel в Docker
-          bash ci/build.sh
+          python -m pip install --upgrade pip
+          cd app
+          pip install -q .[test] 2>/dev/null || pip install -q .
+          pip install -q build
+
+      - name: Run tests
+        run: |
+          cd app
+          python -m unittest discover -s tests -v
+
+      - name: Build wheel
+        run: |
+          mkdir -p artifacts
+          cd app
+          python -m build --wheel --outdir ../artifacts
+          cd ..
+          ls -la artifacts/
 
       - name: Upload wheel artifact
         uses: actions/upload-artifact@v4
