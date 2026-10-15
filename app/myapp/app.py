@@ -69,6 +69,7 @@ def health():
 def metrics():
     return generate_latest(), 200, {'Content-Type': 'text/plain; charset=utf-8'}
 
+init_db()
+
 if __name__ == '__main__':
-    init_db()
     app.run(host='0.0.0.0', port=8080, threaded=True)
