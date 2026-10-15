@@ -34,7 +34,7 @@ jobs:
           name: python-wheel
           path: artifacts/*.whl
 
-deploy:
+  deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
