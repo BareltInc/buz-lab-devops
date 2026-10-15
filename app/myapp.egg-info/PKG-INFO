@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: myapp
-Version: 1.0.0
-Summary: DevOps Lab: Arabic Learning Tracker
-Requires-Python: >=3.12
-Description-Content-Type: text/markdown
-Requires-Dist: Flask>=3.0.0
-Requires-Dist: gunicorn>=21.2.0
-Requires-Dist: prometheus-client>=0.20.0
