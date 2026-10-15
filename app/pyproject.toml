@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "myapp"
-version = "1.0.0"
+version = "1.1.0"
 description = "DevOps Lab: Arabic Learning Tracker"
 readme = "README.md"
 requires-python = ">=3.12"
