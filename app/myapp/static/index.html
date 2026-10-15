@@ -2,54 +2,77 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Arabic Learning Tracker</title>
-    <!-- <style>
-        body { font-family: sans-serif; margin: 20px; }
-        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        .form-group { margin-bottom: 10px; }
-        .links { margin-top: 30px; font-size: 0.9em; }
-    </style> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер арабских слов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Карточки слов</h1>
-    
-    <form action="/add" method="POST">
-        <div class="form-group">
-            <label>Арабский:</label>
-            <input type="text" name="arabic" required>
-        </div>
-        <div class="form-group">
-            <label>Перевод:</label>
-            <input type="text" name="translation" required>
-        </div>
-        <button type="submit">Добавить</button>
-    </form>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <span class="arabic-pattern">✦ ﷽ ✦</span>
+            <h1>Карточки арабских слов</h1>
+            <p class="subtitle">سِجِلُّ تَعَلُّمِ اللُّغَةِ الْعَرَبِيَّةِ</p>
+        </header>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Арабский</th>
-                <th>Перевод</th>
-                <th>Действие</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for word in words %}
-            <tr>
-                <td>{{ word[1] }}</td>
-                <td>{{ word[2] }}</td>
-                <td><a href="/delete/{{ word[0] }}" style="color:red;">удалить</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <!-- Карточка добавления слова -->
+        <div class="card form-card">
+            <h2>Добавить новое слово</h2>
+            <form action="/add" method="POST">
+                <div class="form-group">
+                    <label for="arabic">Арабское слово:</label>
+                    <input type="text" id="arabic" name="arabic" class="arabic-input" placeholder="مثال: كِتَابٌ" required dir="rtl">
+                </div>
+                <div class="form-group">
+                    <label for="translation">Перевод:</label>
+                    <input type="text" id="translation" name="translation" placeholder="Например: Книга" required>
+                </div>
+                <button type="submit" class="btn-submit">Добавить в словарь</button>
+            </form>
+        </div>
 
-    <div class="links">
-        <a href="/health">Health Check</a> | 
-        <a href="/metrics">Prometheus Metrics</a>
+        <!-- Карточка таблицы со словами -->
+        <div class="card table-card">
+            <h2>Словарь</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="th-arabic">Арабский</th>
+                            <th>Перевод</th>
+                            <th class="th-action">Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for word in words %}
+                        <tr>
+                            <td class="td-arabic" dir="rtl">{{ word[1] }}</td>
+                            <td class="td-translation">{{ word[2] }}</td>
+                            <td class="td-action">
+                                <a href="/delete/{{ word[0] }}" class="btn-delete" title="Удалить слово">удалить</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="empty-state">Словарь пока пуст. Добавьте первое слово выше!</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Подвал -->
+        <footer class="footer">
+            <div class="links">
+                <a href="/health">Health Check</a>
+                <span class="sep">•</span>
+                <a href="/metrics">Prometheus Metrics</a>
+            </div>
+        </footer>
     </div>
 </body>
 </html>

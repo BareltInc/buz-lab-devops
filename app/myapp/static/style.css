@@ -1,77 +1,237 @@
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #f4f6f8;
-    color: #333;
+/* Базовые настройки страницы */
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
-h1, h2 {
-    color: #2c3e50;
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background-color: #f7f4ed; /* Тёплый песочно-бежевый фон */
+    color: #2b2927;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px;
 }
 
-form {
+/* Главный центрирующий контейнер */
+.container {
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Шапка сайта */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.arabic-pattern {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    color: #c69239; /* Благородное золото */
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #1b4332; /* Глубокий изумрудно-зеленый */
+    margin: 8px 0 4px 0;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-family: 'Amiri', serif;
+    font-size: 1.25rem;
+    color: #526359;
+}
+
+/* Карточки */
+.card {
     background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-    max-width: 400px;
+    width: 100%;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #e8e2d5;
+    box-shadow: 0 4px 16px rgba(27, 67, 50, 0.05); /* Легкая тень с зелёным оттенком */
+}
+
+h2 {
+    font-size: 1.15rem;
+    color: #1b4332;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #f2ece1;
+    padding-bottom: 8px;
+}
+
+/* Форма добавления */
+.form-group {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #3f4742;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 8px 12px;
-    margin: 8px 0 16px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    padding: 10px 14px;
+    border: 1.5px solid #dcd4c5;
+    border-radius: 8px;
+    background-color: #faf8f5;
+    font-size: 1rem;
+    color: #2b2927;
+    transition: all 0.2s ease;
 }
 
-button {
-    background-color: #3498db;
-    color: white;
-    padding: 10px 15px;
+input[type="text"]:focus {
+    outline: none;
+    border-color: #c69239; /* Золотая рамка при фокусе */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(198, 146, 57, 0.15);
+}
+
+/* Специфика для арабского поля */
+.arabic-input {
+    font-family: 'Amiri', serif;
+    font-size: 1.25rem !important;
+}
+
+/* Кнопка */
+.btn-submit {
+    width: 100%;
+    background-color: #1b4332; /* Изумруд */
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 6px;
 }
 
-button:hover {
-    background-color: #2980b9;
+.btn-submit:hover {
+    background-color: #2d6a4f;
+}
+
+.btn-submit:active {
+    transform: scale(0.99);
+}
+
+/* Таблица */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #ebd9c8;
 }
 
 table {
     width: 100%;
-    max-width: 800px;
     border-collapse: collapse;
     background: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-    background-color: #2c3e50;
-    color: white;
+    background-color: #1b4332; /* Зелёная шапка таблицы */
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid #c69239; /* Золотая разделительная линия */
+}
+
+td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0eae1;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 tr:hover {
-    background-color: #f1f1f1;
+    background-color: #faf7f0;
 }
 
-a {
-    color: #e74c3c;
+/* Арабская колонка в таблице */
+.th-arabic {
+    width: 40%;
+}
+
+.td-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    color: #1b4332;
+    font-weight: 700;
+}
+
+.td-translation {
+    color: #333;
+}
+
+/* Колонка удаления */
+.th-action, .td-action {
+    text-align: right;
+    width: 20%;
+}
+
+.btn-delete {
+    color: #9c3c32;
+    font-size: 0.85rem;
     text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #f1cfca;
+    background-color: #fcf5f4;
+    transition: all 0.2s ease;
 }
 
-a:hover {
+.btn-delete:hover {
+    background-color: #9c3c32;
+    color: #ffffff;
+    border-color: #9c3c32;
+}
+
+.empty-state {
+    text-align: center;
+    color: #838e87;
+    padding: 24px;
+    font-style: italic;
+}
+
+/* Подвал */
+.footer {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.links a {
+    color: #526359;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.links a:hover {
+    color: #1b4332;
     text-decoration: underline;
+}
+
+.sep {
+    color: #c69239;
+    margin: 0 8px;
 }
