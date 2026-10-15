@@ -15,7 +15,7 @@
       "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
       "targets": [
         {
-          "expr": "increase(http_requests_total[1h])",
+          "expr": "sum(increase(http_requests_total[1h]))",
           "legendFormat": "Запросы"
         }
       ],
