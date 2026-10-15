@@ -34,7 +34,7 @@ jobs:
           name: python-wheel
           path: artifacts/*.whl
 
-  deploy:
+deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -43,6 +43,15 @@ jobs:
         with:
           name: python-wheel
           path: artifacts/
+
+      - name: Copy artifact to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "artifacts/*.whl"
+          target: "buz-lab-devops"
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
