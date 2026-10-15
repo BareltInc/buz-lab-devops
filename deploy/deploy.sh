@@ -20,6 +20,6 @@ echo "Extracted version: $VERSION"
 docker build --no-cache --build-arg WHEEL_FILE="$WHEEL_FILE" -t myapp:"$VERSION" -t myapp:latest .
 
 # Запускаем стек через docker compose
-docker compose up -d
+docker compose up -d --force-recreate
 
 echo "Deployment completed successfully! Image myapp:$VERSION is running."

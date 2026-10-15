@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   app:
+    image: myapp:latest
     build:
       context: .
       dockerfile: Dockerfile
