@@ -1,4 +1,3 @@
-/* Базовые настройки страницы */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,71 +6,77 @@
 
 body {
     font-family: 'Noto Sans', sans-serif;
-    background-color: #f7f4ed; /* Тёплый песочно-бежевый фон */
+    /* Насыщенный тёплый песочно-бежевый фон */
+    background-color: #ede6d8;
     color: #2b2927;
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: 40px 16px;
+    padding: 40px 20px;
 }
 
-/* Главный центрирующий контейнер */
+/* Центрирующий широкий контейнер */
 .container {
     width: 100%;
-    max-width: 680px;
+    max-width: 1080px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-/* Шапка сайта */
+/* Шапка */
 .header {
     text-align: center;
-    margin-bottom: 28px;
-}
-
-.arabic-pattern {
-    font-family: 'Amiri', serif;
-    font-size: 1.3rem;
-    color: #c69239; /* Благородное золото */
-    letter-spacing: 2px;
+    margin-bottom: 30px;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.1rem;
     color: #1b4332; /* Глубокий изумрудно-зеленый */
-    margin: 8px 0 4px 0;
+    margin-bottom: 6px;
     font-weight: 700;
 }
 
 .subtitle {
     font-family: 'Amiri', serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     color: #526359;
+}
+
+/* Двухколоночная сетка: слева форма (340px), справа таблица */
+.main-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 28px;
+    align-items: start;
+    width: 100%;
 }
 
 /* Карточки */
 .card {
     background: #ffffff;
-    width: 100%;
     border-radius: 12px;
     padding: 24px;
-    margin-bottom: 24px;
-    border: 1px solid #e8e2d5;
-    box-shadow: 0 4px 16px rgba(27, 67, 50, 0.05); /* Легкая тень с зелёным оттенком */
+    border: 1px solid #dfd7c7;
+    box-shadow: 0 4px 16px rgba(27, 67, 50, 0.06);
+}
+
+/* Фиксируем карточку ввода при скролле таблицы */
+.form-card {
+    position: sticky;
+    top: 24px;
 }
 
 h2 {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #1b4332;
-    margin-bottom: 16px;
-    border-bottom: 2px solid #f2ece1;
-    padding-bottom: 8px;
+    margin-bottom: 18px;
+    border-bottom: 2px solid #ede6d8;
+    padding-bottom: 10px;
 }
 
-/* Форма добавления */
+/* Поля ввода */
 .form-group {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 label {
@@ -84,7 +89,7 @@ label {
 
 input[type="text"] {
     width: 100%;
-    padding: 10px 14px;
+    padding: 11px 14px;
     border: 1.5px solid #dcd4c5;
     border-radius: 8px;
     background-color: #faf8f5;
@@ -95,30 +100,29 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    border-color: #c69239; /* Золотая рамка при фокусе */
+    border-color: #c69239; /* Золотистый акцент при фокусе */
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(198, 146, 57, 0.15);
+    box-shadow: 0 0 0 3px rgba(198, 146, 57, 0.18);
 }
 
-/* Специфика для арабского поля */
 .arabic-input {
     font-family: 'Amiri', serif;
-    font-size: 1.25rem !important;
+    font-size: 1.3rem !important;
 }
 
 /* Кнопка */
 .btn-submit {
     width: 100%;
-    background-color: #1b4332; /* Изумруд */
+    background-color: #1b4332;
     color: #ffffff;
     font-size: 1rem;
     font-weight: 600;
-    padding: 12px;
+    padding: 13px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    margin-top: 6px;
+    margin-top: 4px;
 }
 
 .btn-submit:hover {
@@ -133,7 +137,7 @@ input[type="text"]:focus {
 .table-wrapper {
     overflow-x: auto;
     border-radius: 8px;
-    border: 1px solid #ebd9c8;
+    border: 1px solid #e0d7c7;
 }
 
 table {
@@ -143,17 +147,17 @@ table {
 }
 
 th {
-    background-color: #1b4332; /* Зелёная шапка таблицы */
+    background-color: #1b4332;
     color: #ffffff;
     font-size: 0.9rem;
     font-weight: 600;
-    padding: 12px 16px;
+    padding: 13px 18px;
     text-align: left;
-    border-bottom: 2px solid #c69239; /* Золотая разделительная линия */
+    border-bottom: 2px solid #c69239;
 }
 
 td {
-    padding: 12px 16px;
+    padding: 14px 18px;
     border-bottom: 1px solid #f0eae1;
     font-size: 0.95rem;
     vertical-align: middle;
@@ -167,14 +171,13 @@ tr:hover {
     background-color: #faf7f0;
 }
 
-/* Арабская колонка в таблице */
 .th-arabic {
-    width: 40%;
+    width: 45%;
 }
 
 .td-arabic {
     font-family: 'Amiri', serif;
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     color: #1b4332;
     font-weight: 700;
 }
@@ -183,7 +186,6 @@ tr:hover {
     color: #333;
 }
 
-/* Колонка удаления */
 .th-action, .td-action {
     text-align: right;
     width: 20%;
@@ -193,7 +195,7 @@ tr:hover {
     color: #9c3c32;
     font-size: 0.85rem;
     text-decoration: none;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
     border: 1px solid #f1cfca;
     background-color: #fcf5f4;
@@ -209,13 +211,13 @@ tr:hover {
 .empty-state {
     text-align: center;
     color: #838e87;
-    padding: 24px;
+    padding: 30px;
     font-style: italic;
 }
 
 /* Подвал */
 .footer {
-    margin-top: 10px;
+    margin-top: 36px;
     text-align: center;
     font-size: 0.85rem;
 }
@@ -234,4 +236,15 @@ tr:hover {
 .sep {
     color: #c69239;
     margin: 0 8px;
+}
+
+/* Адаптивность для мобильных телефонов и планшетов */
+@media (max-width: 820px) {
+    .main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .form-card {
+        position: static;
+    }
 }

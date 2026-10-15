@@ -13,57 +13,59 @@
     <div class="container">
         <!-- Шапка -->
         <header class="header">
-            <span class="arabic-pattern">✦ ﷽ ✦</span>
             <h1>Карточки арабских слов</h1>
             <p class="subtitle">سِجِلُّ تَعَلُّمِ اللُّغَةِ الْعَرَبِيَّةِ</p>
         </header>
 
-        <!-- Карточка добавления слова -->
-        <div class="card form-card">
-            <h2>Добавить новое слово</h2>
-            <form action="/add" method="POST">
-                <div class="form-group">
-                    <label for="arabic">Арабское слово:</label>
-                    <input type="text" id="arabic" name="arabic" class="arabic-input" placeholder="مثال: كِتَابٌ" required dir="rtl">
-                </div>
-                <div class="form-group">
-                    <label for="translation">Перевод:</label>
-                    <input type="text" id="translation" name="translation" placeholder="Например: Книга" required>
-                </div>
-                <button type="submit" class="btn-submit">Добавить в словарь</button>
-            </form>
-        </div>
+        <!-- Двухколоночный блок -->
+        <main class="main-layout">
+            <!-- Левая часть: Ввод слов -->
+            <section class="card form-card">
+                <h2>Новое слово</h2>
+                <form action="/add" method="POST">
+                    <div class="form-group">
+                        <label for="arabic">Арабский:</label>
+                        <input type="text" id="arabic" name="arabic" class="arabic-input" placeholder="مثال: كِتَابٌ" required dir="rtl">
+                    </div>
+                    <div class="form-group">
+                        <label for="translation">Перевод:</label>
+                        <input type="text" id="translation" name="translation" placeholder="Например: Книга" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Добавить в словарь</button>
+                </form>
+            </section>
 
-        <!-- Карточка таблицы со словами -->
-        <div class="card table-card">
-            <h2>Словарь</h2>
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="th-arabic">Арабский</th>
-                            <th>Перевод</th>
-                            <th class="th-action">Действие</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for word in words %}
-                        <tr>
-                            <td class="td-arabic" dir="rtl">{{ word[1] }}</td>
-                            <td class="td-translation">{{ word[2] }}</td>
-                            <td class="td-action">
-                                <a href="/delete/{{ word[0] }}" class="btn-delete" title="Удалить слово">удалить</a>
-                            </td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td colspan="3" class="empty-state">Словарь пока пуст. Добавьте первое слово выше!</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            <!-- Правая часть: Словарь -->
+            <section class="card table-card">
+                <h2>Словарь</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th-arabic">Арабский</th>
+                                <th>Перевод</th>
+                                <th class="th-action">Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for word in words %}
+                            <tr>
+                                <td class="td-arabic" dir="rtl">{{ word[1] }}</td>
+                                <td class="td-translation">{{ word[2] }}</td>
+                                <td class="td-action">
+                                    <a href="/delete/{{ word[0] }}" class="btn-delete" title="Удалить слово">удалить</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="3" class="empty-state">Словарь пуст. Добавьте первое слово слева!</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
 
         <!-- Подвал -->
         <footer class="footer">
