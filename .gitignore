@@ -1,1 +1,40 @@
-sqlite_data/db.sqliteapp/db.sqliteartifacts/*!artifacts/.gitkeep# Python__pycache__/*.pyc*.egg-info/.venv/build/dist/# Локальные базы и IDE*.db.idea/.vscode/
+
+artifacts/
+!artifacts/LATEST
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+*.sqlite
+*.sqlite3
+db.sqlite
+sqlite_data/
+
+.env
+.env.local
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+.DS_Store
+Thumbs.db
